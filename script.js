@@ -34,14 +34,21 @@ async function transcribeAudio(audioBlob) {
     const formData = new FormData();
     formData.append('audio', audioBlob);
 
+    console.log('Sending audio to transcription API...');
     const response = await fetch('https://api.assemblyai.com/v2/transcript', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer "a10344be1c7e4b55b7c5bdb73b27318e"'
+            'Authorization': 'Bearer YOUR_API_KEY'  // Replace YOUR_API_KEY with your actual key in quotes
         },
         body: formData
     });
 
+    if (!response.ok) {
+        console.error('Error with transcription API:', response.statusText);
+        return 'Error with transcription API';
+    }
+
     const result = await response.json();
+    console.log('Transcription result:', result);
     return result.text;
 }
