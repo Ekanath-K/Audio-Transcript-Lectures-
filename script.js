@@ -2,7 +2,7 @@ let mediaRecorder;
 let audioChunks = [];
 
 async function testTranscription() {
-    const response = await fetch('https://assembly.ai/wildfires.mp3');
+    const response = await fetch('https://cors-bypasser.glitch.me/bypass/assembly.ai/wildfires.mp3');
     const audioBlob = await response.blob();
     const transcript = await transcribeAudio(audioBlob);
     console.log('Test transcription:', transcript);
