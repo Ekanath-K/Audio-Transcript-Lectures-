@@ -37,7 +37,7 @@ async function transcribeAudio(audioBlob) {
     const response = await fetch('https://api.assemblyai.com/v2/transcript', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer a10344be1c7e4b55b7c5bdb73b27318e'
+            'Authorization': 'Bearer "a10344be1c7e4b55b7c5bdb73b27318e"'
         },
         body: formData
     });
