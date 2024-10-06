@@ -1,5 +1,17 @@
 let mediaRecorder;
 let audioChunks = [];
+# `pip3 install assemblyai` (macOS)
+# `pip install assemblyai` (Windows)
+
+import assemblyai as aai
+
+aai.settings.api_key = "a10344be1c7e4b55b7c5bdb73b27318e"
+transcriber = aai.Transcriber()
+
+transcript = transcriber.transcribe("https://assembly.ai/news.mp4")
+# transcript = transcriber.transcribe("./my-local-audio-file.wav")
+
+print(transcript.text)
 
 document.getElementById('recordButton').addEventListener('click', async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -32,16 +44,16 @@ document.getElementById('stopButton').addEventListener('click', () => {
 
 async function transcribeAudio(audioBlob) {
     const formData = new FormData();
-    formData.append('file', audioBlob);
+    formData.append('audio', audioBlob);
 
-    const response = await fetch('YOUR_TRANSCRIPTION_API_ENDPOINT', {
+    const response = await fetch('https://api.assemblyai.com/v2/transcript', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer YOUR_API_KEY'
+            'Authorization': 'Bearer a10344be1c7e4b55b7c5bdb73b27318e'
         },
         body: formData
     });
 
     const result = await response.json();
-    return result.transcript;
+    return result.text;
 }
