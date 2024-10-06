@@ -1,6 +1,16 @@
 let mediaRecorder;
 let audioChunks = [];
 
+async function testTranscription() {
+    const response = await fetch('https://assembly.ai/wildfires.mp3');
+    const audioBlob = await response.blob();
+    const transcript = await transcribeAudio(audioBlob);
+    console.log('Test transcription:', transcript);
+}
+
+testTranscription();
+
+
 document.getElementById('recordButton').addEventListener('click', async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
