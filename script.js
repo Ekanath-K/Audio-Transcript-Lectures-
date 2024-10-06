@@ -10,6 +10,8 @@ async function testTranscription() {
 
 testTranscription();
 
+res.setHeader('Access-Control-Allow-Origin', '*');
+
 
 document.getElementById('recordButton').addEventListener('click', async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
