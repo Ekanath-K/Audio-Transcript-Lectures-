@@ -36,6 +36,9 @@ async function transcribeAudio(audioBlob) {
 
     const response = await fetch('YOUR_TRANSCRIPTION_API_ENDPOINT', {
         method: 'POST',
+        headers: {
+            'Authorization': 'Bearer YOUR_API_KEY'
+        },
         body: formData
     });
 
