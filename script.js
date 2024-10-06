@@ -2,16 +2,13 @@ let mediaRecorder;
 let audioChunks = [];
 
 async function testTranscription() {
-    const response = await fetch('https://assembly.ai/wildfires.mp3');
+    const response = await fetch('https://your-proxy-server.com/assembly.ai/wildfires.mp3');
     const audioBlob = await response.blob();
     const transcript = await transcribeAudio(audioBlob);
     console.log('Test transcription:', transcript);
 }
 
 testTranscription();
-
-res.setHeader('Access-Control-Allow-Origin', '*');
-
 
 document.getElementById('recordButton').addEventListener('click', async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -50,7 +47,7 @@ async function transcribeAudio(audioBlob) {
     const response = await fetch('https://api.assemblyai.com/v2/transcript', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer a10344be1c7e4b55b7c5bdb73b27318e'  // Replace YOUR_API_KEY with your actual key in quotes
+            'Authorization': 'Bearer YOUR_API_KEY'  // Replace YOUR_API_KEY with your actual key in quotes
         },
         body: formData
     });
