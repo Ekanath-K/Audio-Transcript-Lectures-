@@ -1,17 +1,5 @@
 let mediaRecorder;
 let audioChunks = [];
-# `pip3 install assemblyai` (macOS)
-# `pip install assemblyai` (Windows)
-
-import assemblyai as aai
-
-aai.settings.api_key = "a10344be1c7e4b55b7c5bdb73b27318e"
-transcriber = aai.Transcriber()
-
-transcript = transcriber.transcribe("https://assembly.ai/news.mp4")
-# transcript = transcriber.transcribe("./my-local-audio-file.wav")
-
-print(transcript.text)
 
 document.getElementById('recordButton').addEventListener('click', async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
